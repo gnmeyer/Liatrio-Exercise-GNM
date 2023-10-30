@@ -1,0 +1,22 @@
+{
+  "name": "liatrio-exercise-gnm",
+  "version": "1.0.0",
+  "description": "A simple web app with an HTTP API endpoint and a CI/CD pipeline for cloud deployment.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gnmeyer/Liatrio-Exercise-GNM.git"
+  },
+  "author": "Grant Meyer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gnmeyer/Liatrio-Exercise-GNM/issues"
+  },
+  "homepage": "https://github.com/gnmeyer/Liatrio-Exercise-GNM#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
