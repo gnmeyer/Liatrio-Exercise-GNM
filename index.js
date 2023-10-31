@@ -3,7 +3,14 @@ const app = express()
 const port = 3000
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
+  
+  let JsonObject  = {
+    "message": "My name is Grant Meyer",
+    "timestamp": Date(),
+  };
+
+
+  res.send(JsonObject)
 })
 
 app.listen(port, () => {
