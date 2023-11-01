@@ -17,6 +17,6 @@ jobs:
     - name: Build the Docker image
       run: 
         docker build . --file Dockerfile --tag gnm-liatrio:$(date +%s)
-        docker run --p 8000:80 gnm-liatrio:$(date +%s)
+        docker run -p 8000:80 gnm-liatrio:$(date +%s)
     - name: run tests
       uses: liatrio/github-actions/apprentice-action@921d5abcef26851810ca11a97e1418c1c3f95e0b
