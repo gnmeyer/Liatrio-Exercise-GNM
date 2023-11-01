@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
   };
 
 
-  res.send(JsonObject)
+  res.json(JsonObject)
 })
 
 app.listen(port, () => {
