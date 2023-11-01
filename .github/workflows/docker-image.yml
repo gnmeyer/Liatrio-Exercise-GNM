@@ -19,10 +19,10 @@ jobs:
         docker build . --file Dockerfile --tag gnm-liatrio
     - name: Run the Docker Image
       run:
-        docker run -d -p 80:80 --name gnm-liatrio
+        docker run -d -p 80:80 --name running-container gnm-liatrio
     - name: run tests
       uses: liatrio/github-actions/apprentice-action@921d5abcef26851810ca11a97e1418c1c3f95e0b
       
     - name: Stop the Docker Image
       run:
-        docker stop gnm-liatrio
+        docker stop running-container
