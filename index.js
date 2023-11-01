@@ -6,7 +6,7 @@ app.get('/', (req, res) => {
   
   let JsonObject  = {
     "message": "My name is Grant Meyer",
-    "timestamp": Date(),
+    "timestamp": new Date().getTime(),
   };
 
 
