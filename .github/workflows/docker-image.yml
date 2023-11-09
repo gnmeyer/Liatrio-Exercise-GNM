@@ -36,16 +36,5 @@ jobs:
     - name: Push to Docker Hub
       run:
         docker push gmeyer1/gnm-liatrio:latest
-
-    - name: Make SSH dir
-      run: |
-        mkdir -p ~/.ssh
-        echo "$SSH_KEY" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-      env:
-            SSH_KEY: ${{ secrets.KEY }}
-    
-    - name: Login to GCP
-      run: ssh -i ~/.ssh/id_rsa ${{ secrets.USER }}@${{ secrets.HOST }}
         
       
