@@ -49,6 +49,6 @@ jobs:
     
     - name: Login to GCP
       run: |
-        ssh -i ~/.ssh/id_rsa ${{ secrets.USER }}@${{ secrets.HOST }} "sudo docker pull gmeyer1/gnm-liatrio && sudo docker run -d -p 80:80 --name running-container gmeyer1/gnm-liatrio:latest"
+        ssh -i ~/.ssh/id_rsa ${{ secrets.USER }}@${{ secrets.HOST }} "sudo docker pull gmeyer1/gnm-liatrio && sudo docker run -d -p 80:80 --name vm-running-container gmeyer1/gnm-liatrio:latest"
         
       
