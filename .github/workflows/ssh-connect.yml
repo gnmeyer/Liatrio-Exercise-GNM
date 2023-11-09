@@ -1,0 +1,30 @@
+name: Connect to SSH
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check Out Code
+      uses: actions/checkout@v3
+
+    - name: Make SSH dir
+      run: |
+        mkdir -p ~/.ssh
+        echo "$SSH_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H $VM_IP >> ~/.ssh/known_hosts
+      env:
+            SSH_KEY: ${{ secrets.KEY }}
+            VM_IP: ${{ secrets.HOST }}
+    
+    - name: Login to GCP
+      run: ssh -i ~/.ssh/id_rsa ${{ secrets.USER }}@${{ secrets.HOST }}
+
+      
