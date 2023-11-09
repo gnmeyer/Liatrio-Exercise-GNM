@@ -37,13 +37,15 @@ jobs:
       run:
         docker push gmeyer1/gnm-liatrio:latest
 
-    - name: executing remote ssh commands using ssh key
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.KEY }}
-        port: ${{ secrets.PORT }}
-        script: whoami
+    - name: Make SSH dir
+      run: |
+        mkdir -p ~/.ssh
+        echo "$SSH_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+      env:
+            SSH_KEY: ${{ secrets.KEY }}
+    
+    - name: Login to GCP
+      run: ssh -i ~/.ssh/id_rsa ${{ secrets.USER }}@${{ secrets.HOST }}
         
       
