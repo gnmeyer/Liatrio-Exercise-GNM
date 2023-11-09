@@ -48,11 +48,7 @@ jobs:
             VM_IP: ${{ secrets.HOST }}
     
     - name: Login to GCP
-      run: ssh -i ~/.ssh/id_rsa ${{ secrets.USER }}@${{ secrets.HOST }}
-
-    - name: Begin Docker on VM and run Docker Container
       run: |
-        sudo docker pull gmeyer1/gnm-liatrio
-        sudo docker run -d -p 80:80 --name running-container gmeyer1/gnm-liatrio:latest
+        ssh -i ~/.ssh/id_rsa ${{ secrets.USER }}@${{ secrets.HOST }} "sudo docker pull gmeyer1/gnm-liatrio && sudo docker run -d -p 80:80 --name running-container gmeyer1/gnm-liatrio:latest"
         
       
