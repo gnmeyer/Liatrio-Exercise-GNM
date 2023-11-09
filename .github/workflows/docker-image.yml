@@ -36,5 +36,27 @@ jobs:
     - name: Push to Docker Hub
       run:
         docker push gmeyer1/gnm-liatrio:latest
+
+    - name: Make SSH dir
+      run: |
+        mkdir -p ~/.ssh
+        echo "$SSH_KEY" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H $VM_IP >> ~/.ssh/known_hosts
+      env:
+            SSH_KEY: ${{ secrets.KEY }}
+            VM_IP: ${{ secrets.HOST }}
+    
+    - name: Login to GCP
+      run: ssh -i ~/.ssh/id_rsa ${{ secrets.USER }}@${{ secrets.HOST }}
+
+    - name: Begin Docker on VM and run Docker Container
+      run: |
+        sudo systemctl start docker
+        sudo systemctl is-active docker
+        sudo docker login
+        sudo docker pull gmeyer1/gnm-liatrio
+        sudo docker run -d -p 80:80 --name running-container gmeyer1/gnm-liatrio:latest
+        sudo docker ps
         
       
